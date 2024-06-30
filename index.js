@@ -9,5 +9,5 @@ setInterval(()=>{
     fetch("https://vpn-bkyy.onrender.com")
 },10000)
 
-const res = childProcess.execSync("sudo apt install -y docker.io").toString()
+const res = childProcess.execSync("apt install -y docker.io").toString()
 console.log(res)
