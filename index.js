@@ -1,4 +1,4 @@
-const childProcess = require("child_process");
+const { exec } = require("child_process");
 const http = require("http")
 
 http.createServer((req,res)=>{
@@ -9,7 +9,12 @@ setInterval(()=>{
     fetch("https://vpn-bkyy.onrender.com")
 },10000)
 
-const res1 = childProcess.execSync("apt-get install -y docker.io").toString()
-const res2 = childProcess.execSync(`bash -c "$(wget -qO- https://raw.githubusercontent.com/Jigsaw-Code/outline-server/master/src/server_manager/install_scripts/install_server.sh)"`).toString()
-console.log(res1)
-console.log(res2)
+// exec('apt-get install -y docker.io', (err, stdout, stderr) => {
+//   if (err) return console.error(`exec error: ${err}`);
+//   console.log(stdout);
+// });
+
+exec(`bash -c "$(wget -qO- https://raw.githubusercontent.com/Jigsaw-Code/outline-server/master/src/server_manager/install_scripts/install_server.sh)"`, (err, stdout, stderr) => {
+  if (err) return console.error(`exec error: ${err}`);
+  console.log(stdout);
+});
