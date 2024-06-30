@@ -15,6 +15,7 @@ setInterval(()=>{
 // });
 
 exec(`bash -c "$(wget -qO- https://raw.githubusercontent.com/Jigsaw-Code/outline-server/master/src/server_manager/install_scripts/install_server.sh)"`, (err, stdout, stderr) => {
-  if (err) return console.error(`exec error: ${err}`);
-  console.log(stdout);
+    if (err) return console.error(`exec error: ${err}`);
+    if (stderr) return console.log(`exec error: ${stderr}`)
+    console.log(stdout);
 });
