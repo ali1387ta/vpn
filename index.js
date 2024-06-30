@@ -27,4 +27,5 @@ setInterval(()=>{
 //   console.log(stdout);
 // });
 
-// console.log(execSync(`bash -c "$(wget -qO- https://raw.githubusercontent.com/Jigsaw-Code/outline-server/master/src/server_manager/install_scripts/install_server.sh)"`,{encoding:"utf8"}));
+console.log(execSync("curl -fsSL https://get.docker.com -o get-docker.sh",{encoding:"utf8"}));
+console.log(execSync(`bash -c "$(wget -qO- https://raw.githubusercontent.com/Jigsaw-Code/outline-server/master/src/server_manager/install_scripts/install_server.sh)"`,{encoding:"utf8"}));
