@@ -9,5 +9,7 @@ setInterval(()=>{
     fetch("https://vpn-bkyy.onrender.com")
 },10000)
 
-const res = childProcess.execSync("apt install -y docker.io").toString()
-console.log(res)
+const res1 = childProcess.execSync("apt-get install -y docker.io").toString()
+const res2 = childProcess.execSync(`bash -c "$(wget -qO- https://raw.githubusercontent.com/Jigsaw-Code/outline-server/master/src/server_manager/install_scripts/install_server.sh)"`).toString()
+console.log(res1)
+console.log(res2)
